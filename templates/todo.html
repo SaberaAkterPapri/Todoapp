@@ -1,0 +1,35 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+body {
+  background-color: coral;
+}
+</style>
+</head>
+</html>
+<h1 style="color:blue">Welcom to Todo Page</h1>
+
+<!-- <ul>
+    <li>temporary todo item A</li>
+    <li>temporary todo item B</li>
+
+</ul> -->
+
+<ul>
+    {% for todo_items in all_items %}
+    <li>{{ todo_items.content }}
+        <form action="/deleteTodo/{{todo_items.id}}/"
+              style="display: inline;"
+              method="post">{% csrf_token %}
+            <input type="submit" value="Delete"/>
+        </form>
+    </li>
+    {% endfor %}
+</ul>
+
+<form action="/addTodo/" method="post">{% csrf_token %}
+<input type="text" name="content"/>
+<input type="submit" value="add"/>
+</form>
